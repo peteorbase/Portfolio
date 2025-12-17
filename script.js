@@ -24,10 +24,10 @@ async function fetchRepos() {
     const resp = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&page=${page}`);
     fetched = await resp.json();
     repos = repos.concat(fetched);
+    console.log(repos);
     repos.filter(repo => !excludeRepos.includes(repo.name));
     page++;
   } while (fetched.length === 100);
-  console.log(repos);
   return repos;
 }
 
