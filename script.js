@@ -27,6 +27,7 @@ async function fetchRepos() {
     repos.filter(repo => !excludeRepos.includes(repo.name));
     page++;
   } while (fetched.length === 100);
+  console.log(repos);
   return repos;
 }
 
