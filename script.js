@@ -1,5 +1,5 @@
 // GitHub username
-const GITHUB_USER = "peo00";
+const GITHUB_USER = "peteorbase";
 
 // DOM elements
 const repoList = document.getElementById("repo-list");
