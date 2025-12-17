@@ -1,5 +1,6 @@
-// GitHub username
+// GitHub username and filter
 const GITHUB_USER = "peteorbase";
+const excludeRepos = ["Portfolio"];
 
 // DOM elements
 const repoList = document.getElementById("repo-list");
@@ -23,6 +24,7 @@ async function fetchRepos() {
     const resp = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&page=${page}`);
     fetched = await resp.json();
     repos = repos.concat(fetched);
+    repos.filter(repo => !excludeRepos.includes(repo.name));
     page++;
   } while (fetched.length === 100);
   return repos;
