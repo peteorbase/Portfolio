@@ -44,6 +44,7 @@ async function fetchRepoTopics(repo) {
 function renderRepoCard(repo, topics) {
   return `
     <div class="repo-card" data-language="${repo.language || ''}">
+      <img>
       <a href="${repo.html_url}" class="repo-title" target="_blank">${repo.name}</a>
       ${repo.description ? `<div class="repo-desc">${repo.description}</div>` : ``}
       <div class="repo-meta">
