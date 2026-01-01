@@ -47,7 +47,7 @@ function renderRepoCard(repo) {
   
   return `
     <div class="repo-card" data-language="${repo.language || ''}">
-      <a href="${repo.html_url}" class="repo-title" target="_blank">${repo.name}</a>
+      <a href="${repo.html_url}" class="repo-title" target="_blank">${repo.name.replace(/-/gi, " ").replace(/_/gi, " ")}</a>
       ${repo.description ? `<div class="repo-desc">${repo.description}</div>` : ``}
       <div class="repo-meta">
         ${repo.language ? `<span>🛠️ ${repo.language}</span>` : ``}
