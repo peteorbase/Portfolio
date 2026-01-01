@@ -1,30 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pete Orbase's Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Hi, I’m Pete Andre Orbase</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
-  <header>
-    <h1><span class="accent">Pete Orbase</span> | GitHub Portfolio</h1>
-    <p>All my public code, always up-to-date. Filter by language below!</p>
-    <div id="filter-bar">
-      <label for="language-filter">Filter by language:</label>
-      <select id="language-filter">
-        <option value="all">All Languages</option>
-      </select>
-    </div>
-  </header>
-  <main>
-    <div id="repo-list">
-      <!-- Repositories will be loaded here -->
-    </div>
-  </main>
-  <footer>
-    <p>Portfolio generated automatically from <a href="https://github.com/peteorbase" target="_blank">GitHub</a>.</p>
-  </footer>
-  <script src="script.js"></script>
+	<main>
+        <h1>Hi, I’m Pete Andre Orbase</h1>
+
+		<!-- Top columns -->
+		<section class="columns" aria-label="Intro and navigation">
+			<!-- Column 1: Intro text -->
+			<div>
+				<h1>
+					I’m <span class="highlight">an aspiring Software Developer</span>
+					from <span class="highlight-bg">Christchurch, New Zealand</span>.
+				</h1>
+				<h2>
+					I have <span class="highlight-orange">3+ years</span> of experience
+					to create value for others through software products.
+				</h2>
+			</div>
+            
+            <!-- Column 2: Empty -->
+			<div></div>
+
+			<!-- Column 3: callouts -->
+			<div>
+				<a class="callout" href="#experiences">
+					<span class="emoji">👨🏼‍💻</span>
+					<span>Experiences</span>
+				</a>
+				<a class="callout" href="#about-me">
+					<span class="emoji">👱🏼‍♂️</span>
+					<span>About Me</span>
+				</a>
+				<a class="callout" href="#my-links">
+					<span class="emoji">💼</span>
+					<span>My Links</span>
+				</a>
+			</div>
+		</section>
+
+		<hr class="section-divider" />
+
+		<!-- Experiences -->
+		<section id="experiences">
+			<h2>Experiences</h2>
+            <div id="filter-bar">
+            <label for="language-filter">Filter by language:</label>
+            <select id="language-filter">
+                <option value="all">All Languages</option>
+            </select>
+            </div>
+            <div id="repo-list">
+            <!-- Repositories will be loaded here -->
+            </div>
+		</section>
+
+		<hr class="section-divider" />
+
+		<!-- About Me -->
+		<section id="about-me">
+			<h2>About Me</h2>
+			<p class="section-text">
+				I am a enthusiastic Software Developer with over three years in the related field.
+				My strength lies in creating high performance apps and responsive user interfaces.
+			</p>
+		</section>
+
+		<hr class="section-divider" />
+
+        <!-- My Links -->
+		<section id="my-links">
+			<h2>My Links</h2>
+			<div class="links-grid">
+				<div>
+					<a href="https://www.linkedin.com/in/pete-andre-orbase-76465b247/" target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-linkedin"></i> Linkedin
+					</a>
+				</div>
+				<div>
+					<a href="mailto:pete.orbase@outlook.com" rel="noopener noreferrer">
+						<i class="fa fa-envelope"></i> Mail
+					</a>
+				</div>
+				<div>
+					<a href="https://github.com/peteorbase" target="_blank" rel="noopener noreferrer">
+						<i class="fab fa-github"></i> GitHub
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+    <script src="script.js"></script>
 </body>
 </html>

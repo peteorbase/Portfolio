@@ -29,7 +29,7 @@ h1 {
   color: var(--accent);
 }
 #filter-bar {
-  margin: 1rem 0 0 0;
+  margin: 1rem 0 1rem 0;
 }
 #language-filter {
   background: var(--bg);
@@ -121,4 +121,93 @@ a:hover {
   .repo-card {
     padding: 1rem 0.6rem 0.6rem 0.6rem;
   }
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+main {
+    max-width: 960px;
+    margin: 0 auto;
+}
+.columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+@media (max-width: 900px) {
+    .columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 600px) {
+    .columns {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+h1, h2 {
+    margin: 0 0 1rem;
+}
+.highlight {
+    color: #15803d; /* green-700 style */
+    font-weight: 700;
+}
+.highlight-bg {
+    background-color: #bbf7d0; /* green-200 style */
+    color: #064e3b;
+    padding: 0 0.25em;
+    border-radius: 0.25rem;
+    font-weight: 700;
+}
+.highlight-orange {
+    color: #ea580c; /* orange-600 style */
+    font-weight: 600;
+}
+.section-divider {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 2.5rem 0 1.75rem;
+}
+.callout {
+    display: block;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #bbf7d0;
+    color: #064e3b;
+    font-weight: 500;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.callout:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    background-color: #60d88a;
+    
+}
+.callout span.emoji {
+    margin-right: 0.35rem;
+}
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+@media (max-width: 700px) {
+    .links-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+.links-grid a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+}
+.links-grid a:hover {
+    text-decoration: underline;
 }

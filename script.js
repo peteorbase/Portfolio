@@ -41,20 +41,20 @@ async function fetchRepoTopics(repo) {
 }
 
 // Render a single repo card
-function renderRepoCard(repo, topics) {
+function renderRepoCard(repo) {
+  // Use topics directly from the repo object (repo.topics)
+  const topicsHtml = repo.topics ? repo.topics.map(t => `<span class="tag">${t}</span>`).join('') : '';
+  
   return `
     <div class="repo-card" data-language="${repo.language || ''}">
-      <img>
       <a href="${repo.html_url}" class="repo-title" target="_blank">${repo.name}</a>
       ${repo.description ? `<div class="repo-desc">${repo.description}</div>` : ``}
       <div class="repo-meta">
         ${repo.language ? `<span>🛠️ ${repo.language}</span>` : ``}
-        ${repo.stargazers_count ? `<span>⭐ ${repo.stargazers_count}</span>` : ``}
-        <span>🕓 Updated ${formatDate(repo.updated_at)}</span>
+        <span>⭐ ${repo.stargazers_count}</span>
+        <span>🕓 ${new Date(repo.updated_at).toLocaleDateString()}</span>
       </div>
-      <div>
-        ${topics.map(t => `<span class="tag">${t}</span>`).join('')}
-      </div>
+      <div class="repo-topics">${topicsHtml}</div>
     </div>
   `;
 }
