@@ -87,8 +87,6 @@ main {
   font-size: 0.95em;
 }
 .tag {
-  background: var(--tag-bg);
-  color: var(--accent);
   padding: 0.2em 0.7em;
   border-radius: 1em;
   font-size: 0.85em;

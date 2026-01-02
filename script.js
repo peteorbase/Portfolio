@@ -1,5 +1,6 @@
 // GitHub username and filter
 const GITHUB_USER = "peteorbase";
+const EXCLUDED_REPOS = ["Portfolio"];
 
 // DOM elements
 const repoList = document.getElementById("repo-list");
@@ -20,24 +21,15 @@ async function fetchRepos() {
   let repos = [];
   let fetched = [];
   do {
-    const resp = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&page=${page}`);
+    // Add the specific header to include topics in the main response
+    const resp = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&page=${page}`, {
+      headers: { "Accept": "application/vnd.github.mercy-preview+json" }
+    });
     fetched = await resp.json();
     repos = repos.concat(fetched);
     page++;
   } while (fetched.length === 100);
   return repos;
-}
-
-// Get topics for a repo (needs a separate request per repo for topics)
-async function fetchRepoTopics(repo) {
-  const resp = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${repo}/topics`, {
-    headers: {"Accept": "application/vnd.github.mercy-preview+json"}
-  });
-  if (resp.ok) {
-    const data = await resp.json();
-    return data.names || [];
-  }
-  return [];
 }
 
 // Render a single repo card
@@ -76,13 +68,11 @@ function fillLanguageFilter(languages) {
 }
 
 // Main render function
-async function renderRepos(repos) {
-  repoList.innerHTML = `<div style="color:var(--text-light)">Loading topics…</div>`;
-  // Fetch topics for each repo in parallel
-  const topicsList = await Promise.all(
-    repos.map(r => fetchRepoTopics(r.name))
-  );
-  repoList.innerHTML = repos.map((r, i) => renderRepoCard(r, topicsList[i])).join('');
+function renderRepos(repos) {
+  repoList.innerHTML = repos
+    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)) // Sort by newest first
+    .map(repo => renderRepoCard(repo))
+    .join('');
 }
 
 // Filter repos by selected language
@@ -100,11 +90,22 @@ function filterRepos() {
 // Initial load
 (async function init() {
   repoList.innerHTML = `<div style="color:var(--text-light)">Loading repositories…</div>`;
-  allRepos = await fetchRepos();
+
+  const rawRepos = await fetchRepos();
+
+// Filter the list before doing anything else
+  allRepos = rawRepos.filter(repo => {
+    const isBlacklisted = EXCLUDED_REPOS.includes(repo.name);
+    const isFork = repo.fork;
+    
+    return !isBlacklisted && !isFork;
+  });
+
   // Build unique language list
   allRepos.forEach(r => {
     if (r.language) languagesSet.add(r.language);
   });
+
   fillLanguageFilter(languagesSet);
   await renderRepos(allRepos);
 })();
